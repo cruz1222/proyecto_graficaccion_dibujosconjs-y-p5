@@ -2,7 +2,7 @@
 
 Sitio web hecho con **HTML, CSS y JavaScript** que muestra cinco dibujos creados originalmente en Khan Academy, adaptados a código web estándar con la librería **p5.js**. Incluye además secciones teóricas sobre la etiqueta `<canvas>` y sobre los fundamentos de p5.js.
 
-🔗 **Sitio publicado:** https://TU-USUARIO.github.io/NOMBRE-DEL-REPOSITORIO/
+🔗 **Sitio publicado:** https://github.com/cruz1222/proyecto_graficaccion_dibujosconjs-y-p5
 
 ## 📁 Contenido del sitio
 
@@ -54,4 +54,4 @@ Sitio web hecho con **HTML, CSS y JavaScript** que muestra cinco dibujos creados
 
 ## 👤 Autor
 
-Proyecto realizado por **TU NOMBRE** como tarea de programación.
+Proyecto realizado por **Cruz Angel Velazquez Guel** como tarea de programación.
