@@ -115,3 +115,8 @@ li.cerrado > .nodo.con-hijos .flecha::before { content: "▸"; }
 .nodo.n-meta { background: #eceff3; border-color: #8793a3; }
 .nodo.n-otro { background: #fff6cf; border-color: #d4b020; }
 .error { color: #b3261e; padding: 12px; white-space: normal; }
+
+/* Botones de acceso al inspector */
+.btn-sec { margin-left: 10px; background: transparent; color: #fff; border: 2px solid #fff; box-shadow: none; }
+.btn-sec:hover { background: rgba(255,255,255,.18); }
+.btn-azul { background: var(--accent); color: #fff; }
