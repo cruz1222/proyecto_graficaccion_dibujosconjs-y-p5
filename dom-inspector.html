@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inspector del DOM · Galería p5.js</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="index.html#inicio">🎨 Galería p5.js</a>
+    <button id="menu-btn" aria-label="Abrir menú">☰</button>
+    <nav id="menu">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="index.html#canvas">Canvas</a>
+      <a href="index.html#p5">p5.js</a>
+      <a href="index.html#rana">Rana</a>
+      <a href="index.html#conejo">Dientes de conejo</a>
+      <a href="index.html#cena">¿Qué hay de cena?</a>
+      <a href="index.html#dia">Día nevado soleado</a>
+      <a href="index.html#muneco">Muñeco de nieve</a>
+      <a href="dom-inspector.html" class="activo">Inspector DOM</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero hero-chico">
+      <h1>Inspector del árbol DOM</h1>
+      <p>Visualización gráfica de la jerarquía de etiquetas de cada página del sitio.</p>
+    </section>
+
+    <section class="info">
+      <h2>¿Qué es el DOM?</h2>
+      <p>El <strong>DOM</strong> (Document Object Model) es la representación en forma de <strong>árbol</strong> que el navegador construye a partir del HTML. El nodo raíz es <code>&lt;html&gt;</code>, del que cuelgan <code>&lt;head&gt;</code> (metadatos, estilos y scripts) y <code>&lt;body&gt;</code> (contenido visible). Cada etiqueta anidada es un nodo hijo de la que la contiene.</p>
+      <p>Esta página lee el código de cada archivo HTML del proyecto y dibuja su árbol. Haz clic en un nodo para abrirlo o cerrarlo.</p>
+    </section>
+
+    <section class="inspector">
+      <div id="pestanas" class="pestanas"></div>
+
+      <div class="leyenda">
+        <span class="nodo n-raiz">raíz</span>
+        <span class="nodo n-estructura">head / body</span>
+        <span class="nodo n-semantico">semántico</span>
+        <span class="nodo n-contenido">contenido</span>
+        <span class="nodo n-canvas">canvas</span>
+        <span class="nodo n-meta">metadatos / scripts</span>
+        <span class="nodo n-otro">otros</span>
+      </div>
+
+      <div class="controles">
+        <button id="btn-expandir">Expandir todo</button>
+        <button id="btn-contraer">Contraer</button>
+      </div>
+
+      <div id="stats" class="stats"></div>
+      <div id="arbol" class="arbol"></div>
+    </section>
+  </main>
+
+  <footer>Hecho con HTML, CSS, JavaScript y p5.js · Proyectos originales de Khan Academy</footer>
+
+  <script src="dom-inspector.js"></script>
+  <script>
+    document.getElementById("menu-btn").addEventListener("click", () =>
+      document.getElementById("menu").classList.toggle("abierto"));
+  </script>
+</body>
+</html>
