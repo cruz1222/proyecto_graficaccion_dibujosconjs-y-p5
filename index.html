@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galería_cruz p5.js · Proyectos de Khan Academy</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#inicio">🎨 Galería p5.js</a>
+    <button id="menu-btn" aria-label="Abrir menú">☰</button>
+    <nav id="menu">
+      <a href="#inicio">Inicio</a>
+      <a href="#canvas">Canvas</a>
+      <a href="#p5">p5.js</a>
+      <a href="#rana">Rana</a>
+      <a href="#conejo">Dientes de conejo</a>
+      <a href="#cena">¿Qué hay de cena?</a>
+      <a href="#dia">Día nevado soleado</a>
+      <a href="#muneco">Muñeco de nieve</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <h1>Dibujos con p5.js</h1>
+      <p>Cinco proyectos que creé en Khan Academy, adaptados a una página web con HTML, CSS y JavaScript estándar usando la librería p5.js.</p>
+      <a class="btn" href="#rana">Ver proyectos</a>
+    </section>
+
+    <section id="canvas" class="info">
+      <h2>La etiqueta &lt;canvas&gt; y el contexto 2D</h2>
+      <p>La etiqueta <code>&lt;canvas&gt;</code> de HTML5 define un área rectangular en blanco dentro de la página. Por sí sola no muestra nada: es un lienzo sobre el que JavaScript dibuja píxeles. Sus atributos <code>width</code> y <code>height</code> fijan la resolución (por defecto 300×150).</p>
+      <pre><code>&lt;canvas id="lienzo" width="400" height="400"&gt;&lt;/canvas&gt;</code></pre>
+
+      <h3>Contextos de renderizado</h3>
+      <p>Para dibujar se pide al canvas un <strong>contexto de renderizado</strong> con <code>getContext()</code>. Los principales son:</p>
+      <ul>
+        <li><code>"2d"</code>: API de dibujo bidimensional (formas, rutas, texto, imágenes, degradados). Es el que explicamos aquí.</li>
+        <li><code>"webgl"</code> / <code>"webgl2"</code>: gráficos 3D acelerados por GPU.</li>
+        <li><code>"bitmaprenderer"</code>: muestra imágenes <code>ImageBitmap</code> de forma eficiente.</li>
+      </ul>
+      <p>Un mismo canvas solo puede tener un tipo de contexto a la vez.</p>
+
+      <h3>Ejemplo con el contexto 2D</h3>
+      <pre><code>const ctx = document.getElementById("lienzo").getContext("2d");
+
+ctx.fillStyle = "green";          // color de relleno
+ctx.fillRect(50, 50, 100, 80);    // x, y, ancho, alto
+
+ctx.beginPath();                  // iniciar una ruta
+ctx.arc(250, 100, 40, 0, Math.PI * 2); // círculo: x, y, radio, ángulo inicial/final
+ctx.fillStyle = "orange";
+ctx.fill();
+
+ctx.strokeStyle = "black";
+ctx.lineWidth = 3;
+ctx.beginPath();
+ctx.moveTo(50, 250);
+ctx.lineTo(350, 250);
+ctx.stroke();</code></pre>
+
+      <h3>Conceptos clave</h3>
+      <ul>
+        <li><strong>Sistema de coordenadas:</strong> el origen (0, 0) está en la esquina superior izquierda; x crece hacia la derecha e y hacia abajo.</li>
+        <li><strong>Rutas (paths):</strong> <code>beginPath()</code>, <code>moveTo()</code>, <code>lineTo()</code>, <code>arc()</code> y <code>closePath()</code> describen una figura que luego se pinta con <code>fill()</code> o <code>stroke()</code>.</li>
+        <li><strong>Estilos:</strong> <code>fillStyle</code>, <code>strokeStyle</code> y <code>lineWidth</code> se aplican a lo que se dibuje después.</li>
+        <li><strong>Transformaciones:</strong> <code>translate()</code>, <code>rotate()</code> y <code>scale()</code>, junto con <code>save()</code> y <code>restore()</code> para guardar y recuperar el estado.</li>
+        <li><strong>Animación:</strong> se borra con <code>clearRect()</code> y se vuelve a dibujar en cada fotograma usando <code>requestAnimationFrame()</code>.</li>
+      </ul>
+    </section>
+
+    <section id="p5" class="info">
+      <h2>Fundamentos de p5.js</h2>
+      <p>p5.js es una librería de JavaScript para programación creativa, inspirada en Processing. Simplifica el trabajo con el canvas: crea el lienzo, ejecuta el ciclo de animación y ofrece funciones sencillas como <code>ellipse()</code> o <code>fill()</code>. Es la base de los dibujos de Khan Academy.</p>
+
+      <h3>Estructura básica</h3>
+      <pre><code>function setup() {
+  createCanvas(400, 400); // se ejecuta una vez al inicio
+}
+
+function draw() {
+  background(220);        // se ejecuta ~60 veces por segundo
+  fill(255, 0, 0);
+  ellipse(mouseX, mouseY, 50, 50);
+}</code></pre>
+
+      <h3>Ideas principales</h3>
+      <ul>
+        <li><code>setup()</code> y <code>draw()</code>: preparación inicial y bucle de animación.</li>
+        <li><strong>Formas:</strong> <code>rect()</code>, <code>ellipse()</code>, <code>triangle()</code>, <code>arc()</code>, <code>line()</code>, <code>bezier()</code>.</li>
+        <li><strong>Color:</strong> <code>fill()</code>, <code>stroke()</code>, <code>noStroke()</code>, <code>background()</code>; admite valores RGB, escala de grises y transparencia.</li>
+        <li><strong>Interactividad:</strong> variables del sistema como <code>mouseX</code>, <code>mouseY</code>, <code>mouseIsPressed</code> y eventos como <code>mousePressed()</code>.</li>
+        <li><strong>Transformaciones:</strong> <code>push()</code>, <code>pop()</code>, <code>translate()</code>, <code>rotate()</code>.</li>
+        <li><strong>Utilidades:</strong> <code>random()</code>, <code>map()</code>, <code>constrain()</code>, <code>lerp()</code>, <code>sin()</code>.</li>
+      </ul>
+
+      <h3>Modo global vs. modo instancia</h3>
+      <p>En modo global las funciones están disponibles directamente, pero solo se puede tener un sketch por página. En este sitio usamos el <strong>modo instancia</strong>: cada dibujo es una función que recibe un objeto <code>s</code> (el sketch) y se monta dentro de un contenedor con <code>new p5(sketch, "id")</code>. Así pueden convivir cinco lienzos en la misma página.</p>
+      <pre><code>const miSketch = (s) =&gt; {
+  s.setup = () =&gt; s.createCanvas(400, 400);
+  s.draw  = () =&gt; s.ellipse(s.mouseX, s.mouseY, 40);
+};
+new p5(miSketch, "contenedor");</code></pre>
+
+      <h3>Relación con canvas</h3>
+      <p>p5.js usa por debajo el contexto 2D del <code>&lt;canvas&gt;</code>. Por ejemplo, <code>ellipse()</code> equivale a <code>beginPath()</code> + <code>ellipse()</code> + <code>fill()</code> + <code>stroke()</code>. Con <code>drawingContext</code> puedes acceder al contexto nativo desde p5.</p>
+    </section>
+
+    <section id="rana" class="proyecto">
+      <h2>1. Rana</h2>
+      <p>Una rana dibujada con elipses: cara, ojos, pupilas y boca.</p>
+      <div id="c-rana" class="lienzo"></div>
+    </section>
+
+    <section id="conejo" class="proyecto">
+      <h2>2. Dientes de conejo</h2>
+      <p>Un conejo con orejas, ojos grandes, boca y sus dos dientes.</p>
+      <div id="c-conejo" class="lienzo"></div>
+    </section>
+
+    <section id="cena" class="proyecto">
+      <h2>3. ¿Qué hay de cena?</h2>
+      <p>Un plato sobre una mesa de madera con carne, papas fritas y chícharos.</p>
+      <div id="c-cena" class="lienzo"></div>
+    </section>
+
+    <section id="dia" class="proyecto">
+      <h2>4. Día nevado soleado</h2>
+      <p>Un muñeco de nieve bajo el sol, sobre el pasto.</p>
+      <div id="c-dia" class="lienzo"></div>
+    </section>
+
+    <section id="muneco" class="proyecto">
+      <h2>5. Muñeco de nieve</h2>
+      <p>Un muñeco de nieve con brazos y cara: ojos, nariz de zanahoria y sonrisa.</p>
+      <div id="c-muneco" class="lienzo"></div>
+    </section>
+  </main>
+
+  <footer>Hecho con HTML, CSS, JavaScript y p5.js · Proyectos originales de Khan Academy</footer>
+
+  <script src="sketches.js"></script>
+  <script>
+    document.getElementById("menu-btn").addEventListener("click", () =>
+      document.getElementById("menu").classList.toggle("abierto"));
+    document.querySelectorAll("#menu a").forEach(a =>
+      a.addEventListener("click", () => document.getElementById("menu").classList.remove("abierto")));
+  </script>
+</body>
+</html>
